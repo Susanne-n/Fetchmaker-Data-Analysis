@@ -1,5 +1,5 @@
-import numpy as np
 import fetchmaker
+import numpy as np
 from scipy.stats import binom_test
 from scipy.stats import f_oneway
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
@@ -10,7 +10,8 @@ rottweiler_tl = fetchmaker.get_tail_length('rottweiler')
 print(np.mean(rottweiler_tl))
 print(np.std(rottweiler_tl))
 
-# on average, 8% of dogs in the FetchMaker system is expected to be rescues. Find out if whippets are significantly more or less likely to be a rescue
+# on average, 8% of dogs in the FetchMaker system is expected to be rescues
+# find out if the number of whippet rescues is statistically equal to the expected percentage of 8%
 whippet_rescue = fetchmaker.get_is_rescue('whippet')
 num_whippet_rescues = np.count_nonzero(whippet_rescue)
 print(num_whippet_rescues)
@@ -19,7 +20,6 @@ num_whippet = np.size(whippet_rescue)
 print(num_whippet)
 # total number of whippets is 100
 
-# perform a test to find out if the number of whippet rescues is statistically equal to the expected percentage of 8%
 pval = binom_test(6, 100, 0.08)
 print(format(pval, '0.10f'))
 # the difference in percentage is not significant (p = .58), the number of whippet rescues doesn't differ from the expected average of 8%
